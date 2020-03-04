@@ -2,9 +2,13 @@ const express = require('express');
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
 // Configs
 const app = express();
+app.disable('x-powered-by');
+app.use(cors());
+
 dotenv.config();
 
 app.use(bodyParser.urlencoded({ extended: false }));
