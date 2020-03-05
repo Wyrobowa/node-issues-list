@@ -3,6 +3,7 @@ const express = require('express');
 // Controllers
 const {
   createIssue,
+  editIssue,
   getIssues,
 } = require('../controllers/issueController');
 
@@ -16,6 +17,18 @@ const router = express.Router();
  * is asynchronous
  */
 router.get('/list', getIssues);
+
+/**
+ * Edit Issue
+ *
+ * @name editIssue
+ * @route {PUT} /edit/:slug
+ * @bodyparam {String} title
+ * @bodyparam {String} description
+ * @bodyparam {String} state
+ * is asynchronous
+ */
+router.put('/edit/:slug', editIssue);
 
 /**
  * Add Issue

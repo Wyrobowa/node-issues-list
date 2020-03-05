@@ -13,6 +13,19 @@ const createIssue = async (req, res) => {
   });
 };
 
+const editIssue = async (req, res) => {
+  const issue = await Issue.findOneAndUpdate(
+    { slug: req.params.slug },
+    req.body,
+    { new: true },
+  );
+
+  res.json({
+    status: 'success',
+    data: issue,
+  })
+};
+
 const getIssues = async (req, res) => {
   const issues = await Issue.find();
 
@@ -24,5 +37,6 @@ const getIssues = async (req, res) => {
 
 module.exports = {
   createIssue,
+  editIssue,
   getIssues,
 };

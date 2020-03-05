@@ -20,6 +20,7 @@ require('./models/Issue');
 // DB Connection
 const mongoConnectOptions = {
   useCreateIndex: true,
+  useFindAndModify: false,
   useNewUrlParser: true,
   useUnifiedTopology: true,
 };
