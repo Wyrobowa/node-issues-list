@@ -5,9 +5,6 @@ const mongoSanitize = require('express-mongo-sanitize');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
-// Middlewares
-const { errorHandler, error404Handler } = require('./middlewares/errorHandlers');
-
 // Configs
 const app = express();
 app.disable('x-powered-by');
@@ -41,10 +38,6 @@ mongoose.connection.on('error', (error) => console.log(error));
 const issueRoute = require('./routes/issueRoute');
 
 app.use('/', issueRoute);
-
-// Set up Error Handlers on App
-app.use(error404Handler);
-app.use(errorHandler);
 
 // Start app
 app.set('port', process.env.PORT || 3001);
