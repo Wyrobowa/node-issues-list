@@ -7,6 +7,9 @@ const {
   getIssues,
 } = require('../controllers/issueController');
 
+// Helpers
+const { catchErrors } = require('../middlewares/errorHandlers');
+
 const router = express.Router();
 
 /**
@@ -16,7 +19,7 @@ const router = express.Router();
  * @route {GET} /list
  * is asynchronous
  */
-router.get('/list', getIssues);
+router.get('/list', catchErrors(getIssues));
 
 /**
  * Edit Issue
@@ -28,7 +31,7 @@ router.get('/list', getIssues);
  * @bodyparam {String} state
  * is asynchronous
  */
-router.put('/edit/:slug', editIssue);
+router.put('/edit/:slug', catchErrors(editIssue));
 
 /**
  * Add Issue
@@ -37,6 +40,6 @@ router.put('/edit/:slug', editIssue);
  * @route {POST} /add
  * is asynchronous
  */
-router.post('/add', createIssue);
+router.post('/add', catchErrors(createIssue));
 
 module.exports = router;
