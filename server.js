@@ -1,6 +1,7 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
+const mongoSanitize = require('express-mongo-sanitize');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
@@ -11,6 +12,7 @@ app.use(cors());
 
 dotenv.config();
 
+app.use(mongoSanitize());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
@@ -20,6 +22,7 @@ require('./models/Issue');
 // DB Connection
 const mongoConnectOptions = {
   useCreateIndex: true,
+  useFindAndModify: false,
   useNewUrlParser: true,
   useUnifiedTopology: true,
 };
